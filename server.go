@@ -103,11 +103,6 @@ func handler4(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
 
-	token := Authentication(user, password)
-	ctx := context.WithValue(ctx, tokenKey, token)
-
-	token := ctx.Value(tokenKey)
-
 	errCh := make(chan error, 1)
 	go func() {
 		errCh <- request3(ctx)
